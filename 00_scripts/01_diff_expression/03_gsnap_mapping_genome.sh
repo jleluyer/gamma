@@ -1,14 +1,14 @@
 #!/bin/bash
 #PBS -N gsnap.__BASE__
-#PBS -o gsnap.__BASE__.err
+#PBS -o 98_log_files/gsnap.__BASE__.err
 #PBS -l walltime=23:00:00
 #PBS -l mem=15g
-#####PBS -m ea
 #PBS -l ncpus=12
 #PBS -q omp
 #PBS -r n
 
 #Module load
+#GMAPv2021
 #Samtools1.4.1
 
 # Global variables
@@ -19,6 +19,7 @@ DATAINPUT="03_trimmed"
 GENOMEFOLDER="path_to_genome_folder"
 GENOME="gmap_genome_index"
 platform="Illumina"
+NCPUS=12
 
 #move to present working dir
 cd $PBS_O_WORKDIR
@@ -27,7 +28,7 @@ base=__BASE__
 
     # Align reads
     echo "Aligning $base"
- gsnap --gunzip -t "$NCPUS" -A sam --min-coverage=0.95 \
+ gsnap --gunzip -t "$NCPUS" -A sam --min-coverage=0.9 \
 	--dir="$GENOMEFOLDER" -d "$GENOME" \
        	--max-mismatches=2 --novelsplicing=1 \
 	--split-output="$DATAOUTPUT"/"$base" \
@@ -41,7 +42,5 @@ base=__BASE__
 	echo "Creating sorted bam for $base"
 	samtools sort "$DATAOUTPUT"/"$base".concordant_uniq.bam -o "$DATAOUTPUT"/"$base".sorted.bam
  	samtools index "$DATAOUTPUT"/"$base".sorted.bam  
-# Clean up
-    echo "Removing "$TMP"/"$base".sam"
-    echo "Removing "$TMP"/"$base".bam"
+
 
