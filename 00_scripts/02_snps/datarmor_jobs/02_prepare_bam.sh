@@ -13,7 +13,7 @@ do
 
 base=$(basename "$file")
 
-        toEval="cat 02_snps/02_gatk_prepare_bam_genome.pbs | sed 's/__BASE__/$base/g'"; eval $toEval > 02_snps/datarmor_jobs/GATK_$base.sh
+        toEval="cat 02_snps/02_gatk_prepare_bam.pbs | sed 's/__BASE__/$base/g'"; eval $toEval > 02_snps/datarmor_jobs/GATK_$base.sh
 done
 
 #Submit jobs
