@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #PBS -N combineGvcf
-#PBS -o 98_log_files/combine.err
+#PBS -o 98_log_files/combine.vcf.err
 #PBS -l walltime=50:00:00
 #PBS -l mem=15g
 #PBS -r n
@@ -13,7 +13,7 @@ index="path_to_genome_folder/Pmarg.genome.masked.dict"
 OutDir="04_mapped/gatk"
 
 GATK_jar="gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar"
-TmpDir="gamma/gatk"
+TmpDir="04_mapped/gatk"
 base=__BASE__
 
 #Combine gVCF
