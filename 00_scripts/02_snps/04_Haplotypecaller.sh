@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #PBS -N haplotypecaller
 #PBS -o 98_log_files/haplo.__BASE__.err
-#PBS -l walltime=50:00:00
+#PBS -l walltime=20:00:00
 #PBS -l mem=15g
 #PBS -r n
 
