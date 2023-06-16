@@ -9,11 +9,11 @@
 cd $PBS_O_WORKDIR
 Reference="path_to_genome_folder/Pmarg.genome.masked.fa"
 index="path_to_genome_folder/Pmarg.genome.masked.dict"
-InDir="/home1/scratch/jleluyer/gamma/04_mapped"
-OutDir="/home1/scratch/jleluyer/gamma/04_mapped/gatk"
+InDir="04_mapped"
+OutDir="04_mapped/gatk"
 
 GATK_jar="gatk-4.0.3.0/gatk-package-4.0.3.0-local.jar"
-TmpDir="gamma/gatk"
+TmpDir="04_mapped/gatk"
 base=__BASE__
 
 java -Xmx10G -Djava.io.tmpdir="$TmpDir" -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar "$GATK_jar" HaplotypeCaller \
