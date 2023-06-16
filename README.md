@@ -22,7 +22,7 @@ We used Trimmomaticv0.36
 For this, run:
 
 ```shell
-00_scripts/01_diff_expression/01_trimmomatic_pe.sh
+./00_scripts/01_diff_expression/datarmor_jobs/01_trimmomatic.sh
 ```
 
 
@@ -32,7 +32,7 @@ We used GSNAP (GMAPv2021.08.25)
 For this, run:
 
 ```shell
-00_scripts/01_diff_expression/02_gmap_index_genome.sh
+qsub 00_scripts/01_diff_expression/02_gmap_index_genome.pbs
 ```
 
 
@@ -43,7 +43,7 @@ We used GMAPv2021.08.25
 For this, run:
 
 ```shell
-00_scripts/01_diff_expression/03_gmap_mapping_genome.sh
+./00_scripts/01_diff_expression/datarmor_jobs/03_mapping.sh
 ```
 
 #### 4. Counting:
@@ -53,7 +53,7 @@ We used hstseqv0.9.1
 For this, run:
 
 ```shell
-00_scripts/01_diff_expression/04_htseq_count_genome.sh
+./00_scripts/01_diff_expression/datarmor_jobs/04_htseq.sh
 ```
 
 ### Part 2. SNP analysis:
@@ -67,20 +67,27 @@ We used GATK4.0.3.0
 For this, run:
 
 ```shell
-00_scripts/02_snps/01_gatk_prepare_ref.sh
+qsub 00_scripts/02_snps/01_gatk_prepare_ref.pbs
 ```
 
 #### 2. Cleaning BAM files:
 
 ```shell
-00_scripts/02_snps/02_gatk_prepare_bam_genome.sh
+./00_scripts/02_snps/daarmor_jobs/02_gatk_prepare_bam.pbs
+```
+
+```shell
+./00_scripts/02_snps/daarmor_jobs/03_dedup_bam.pbs
 ```
 
 #### 3. Calling and combining variants:
 
 ```shell
-00_scripts/02_snps/03_Haplotypecaller.sh
-00_scripts/02_snps/04_combine_gvcf.sh
+./00_scripts/02_snps/datarmor_jobs/04_Haplotypecaller.pbs
+```
+
+```shell
+qsub 00_scripts/02_snps/datarmor_jobs/05_combine_gvcf.sh
 ```
 
 #### 4. Variant filtration and imputation:
@@ -96,10 +103,12 @@ We used for filtration following thresholds:
  
 
 ```shell
-00_scripts/02_snps/05_variant_filtering.sh
-00_scripts/02_snps/04_combine_gvcf.sh
+qsub 00_scripts/02_snps/06_variant_filtering.pbs
 ```
  
+ ```shell
+qsub 00_scripts/02_snps/04_combine_gvcf.pbs
+```
  
 ### Part 3. Downstream analysis:
 
