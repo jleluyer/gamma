@@ -18,11 +18,6 @@ TmpDir="04_mapped"
 
 base=__BASE__
 
-# clean sam
-java -Xmx35G -Djava.io.tmpdir="$TmpDir" -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -jar "$GATK_jar" CleanSam \
-	--INPUT "$InDir"/"$base".concordant_uniq \
-	--OUTPUT "$OutDir"/"$base".clean.sam 2>&1 | tee 98_log_files/error."$base".log
-
 # remove reads problematic
 grep "error" 98_log_files/prep.bam."$base".err |awk '{print $8}'|sed 's/,//g' >REMOVE_"$base".log
 
