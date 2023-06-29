@@ -73,21 +73,21 @@ qsub 00_scripts/02_snps/01_gatk_prepare_ref.pbs
 #### 2. Cleaning BAM files:
 
 ```shell
-./00_scripts/02_snps/datarmor_jobs/02_gatk_prepare_bam.pbs
+./00_scripts/02_snps/datarmor_jobs/02_gatk_prepare_bam.sh
 ```
 
 ```shell
-./00_scripts/02_snps/datarmor_jobs/03_dedup_bam.pbs
+./00_scripts/02_snps/datarmor_jobs/03_dedup_bam.sh
 ```
 
 #### 3. Calling and combining variants:
 
 ```shell
-./00_scripts/02_snps/datarmor_jobs/04_Haplotypecaller.pbs
+./00_scripts/02_snps/datarmor_jobs/04_Haplotypecaller.sh
 ```
 
 ```shell
-qsub 00_scripts/02_snps/05_combine_gvcf.sh
+qsub 00_scripts/02_snps/05_combine_gvcf.pbs
 ```
 
 #### 4. Variant filtration and imputation:
